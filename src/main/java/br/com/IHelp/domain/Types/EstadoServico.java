@@ -2,5 +2,8 @@ package br.com.IHelp.domain.Types;
 
 public enum EstadoServico {
 	DISPONIVEL,
-	INDISPONIVEL
+	INDISPONIVEL,
+	CONCLUIDO,
+	EM_ANDAMENTO,
+	ENCERRADO
 }
