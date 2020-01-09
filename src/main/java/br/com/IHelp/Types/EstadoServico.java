@@ -18,6 +18,7 @@ public enum EstadoServico {
 	public static String disponibilidadeDoServico(Boolean servicoEstado) {
 		
 		String diponibilidade = servicoEstado.equals(true) ? estadoServico.get(0).toString()  : estadoServico.get(1).toString();
+		
 		return diponibilidade;
 	}
 }

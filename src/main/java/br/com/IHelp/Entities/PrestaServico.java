@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "presta_servico")
-public class PrestaServico  extends Login implements Serializable{
+public class PrestaServico implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	

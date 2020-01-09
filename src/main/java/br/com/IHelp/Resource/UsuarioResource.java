@@ -1,34 +1,36 @@
 package br.com.IHelp.Resource;
 
-import java.util.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.IHelp.Entities.Usuario;
-import br.com.IHelp.Types.EstadoServico;
-import br.com.IHelp.Types.Estados;
+import br.com.IHelp.Service.UsuarioService;
 
 @Controller
 public class UsuarioResource {
-	
-	private static final String INDISPONIVEL = "INDISPONIVEL";
-	
+
+	@Autowired
+	private UsuarioService usuarioService;
+
 	@GetMapping(value = "/usuarios")
-	public ResponseEntity<Usuario> pegaTudo(){
+	public ResponseEntity<List<Usuario>> pegaTudo() {
+
+		List<Usuario> listaUsuario = usuarioService.pegaUsuarios();
 		
-		Usuario user = new Usuario("Carla", "234.234.323.32", "2342-3234", "Carla@gmail.com", new Date(12/02/2000), "São Paulo");
+		return ResponseEntity.ok().body(listaUsuario);
+	}
+	
+	@PostMapping(value = "/cadastraUsuario")
+	public ResponseEntity<Usuario> cadastraUsuario(@RequestBody Usuario usuario){
+		usuario = usuarioService.inserirUsuario(usuario);
 		
-		Boolean estado = Estados.servicoDisponivel(user.getEstado());
-		
-		String estadoDoServiço = EstadoServico.disponibilidadeDoServico(estado);
-		
-		if(estadoDoServiço.equals(INDISPONIVEL)) {
-			return null;
-		}else {
-			return ResponseEntity.ok().body(user);
-		}
+		return ResponseEntity.ok().body(usuario);
 		
 	}
 }

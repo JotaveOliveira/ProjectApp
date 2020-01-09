@@ -1,34 +1,36 @@
 package br.com.IHelp.Resource;
 
-import java.util.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.IHelp.Entities.PrestaServico;
-import br.com.IHelp.Types.EstadoServico;
-import br.com.IHelp.Types.Estados;
+import br.com.IHelp.Service.PrestaServicoService;
 
 @Controller
 public class PrestaServicoResource {
-
-	private static final String INDISPONIVEL = "INDISPONIVEL";
 	
-	@GetMapping(value="/prestadoresServico")
-	public ResponseEntity<PrestaServico> pegaTudo(){
+	@Autowired
+	private PrestaServicoService prestaServicoService;
+
+	@GetMapping(value = "/prestadoresServico")
+	public ResponseEntity<List<PrestaServico>> pegaTudo() {
+
+		List<PrestaServico> listaPrestaServico = prestaServicoService.pegaPrestadoresServico();
+
+		return ResponseEntity.ok().body(listaPrestaServico);
+	}
+	
+	@PostMapping(value = "/cadastraPrestaServico")
+	public ResponseEntity<PrestaServico> cadastraUsuario(@RequestBody PrestaServico prestaServico){
+		prestaServico = prestaServicoService.inserirUsuario(prestaServico);
 		
-		PrestaServico prestaServico = new PrestaServico("12.123.1233/0001-12", "Auto Elétrica Marilia", "Curitiba", "AutoEletrica@gmail.com", new Date(21/12/2012));
-		
-		Boolean estado = Estados.servicoDisponivel(prestaServico.getEstado());
-		
-		String estadoDoServiço = EstadoServico.disponibilidadeDoServico(estado);
-		
-		if(estadoDoServiço.equals(INDISPONIVEL)) {
-			return null;
-		}else {
-			return ResponseEntity.ok().body(prestaServico);
-		}
+		return ResponseEntity.ok().body(prestaServico);
 		
 	}
 }
