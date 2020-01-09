@@ -1,4 +1,4 @@
-package br.com.IHelp.domain.Types;
+package br.com.IHelp.Types;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +16,6 @@ public enum Estados {
 	
 	private String state;
 	
-	public static class EstadosExist{
 		
 		private static List<Estados> estados = Arrays.asList(Estados.values());
 		
@@ -30,6 +29,5 @@ public enum Estados {
 			
 			return resultado;
 			
-		}
 	}
 }

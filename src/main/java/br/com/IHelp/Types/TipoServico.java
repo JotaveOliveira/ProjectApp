@@ -1,4 +1,4 @@
-package br.com.IHelp.domain.Types;
+package br.com.IHelp.Types;
 
 public enum TipoServico {
 	MECANICO,

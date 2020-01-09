@@ -1,4 +1,4 @@
-package br.com.IHelp.domain.Entities;
+package br.com.IHelp.Entities;
 
 import java.io.Serializable;
 import java.util.Date;

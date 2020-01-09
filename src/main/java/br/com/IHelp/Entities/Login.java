@@ -1,4 +1,4 @@
-package br.com.IHelp.domain.Entities;
+package br.com.IHelp.Entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

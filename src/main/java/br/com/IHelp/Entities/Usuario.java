@@ -1,9 +1,10 @@
-package br.com.IHelp.domain.Entities;
+package br.com.IHelp.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor

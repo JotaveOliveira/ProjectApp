@@ -4,14 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import br.com.IHelp.domain.Types.Estados.EstadosExist;
+import br.com.IHelp.Types.Estados;
 
 public class EstadosTest {
 
 	@Test
 	public void estadoSucessTest(){
 		
-		Boolean test = EstadosExist.servicoDisponivel("São Paulo");
+		Boolean test = Estados.servicoDisponivel("São Paulo");
 		
 		assertEquals(true, test);
 	}
