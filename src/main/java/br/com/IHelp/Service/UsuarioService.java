@@ -16,7 +16,7 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	private static final String INDISPONIVEL = "INDISPONIVEL";
+	private static final String DISPONIVEL = "DISPONIVEL";
 	
 	public List<Usuario> pegaUsuarios(){
 		
@@ -25,14 +25,14 @@ public class UsuarioService {
 	
 	public Usuario inserirUsuario(Usuario usuario) {
 		
-		Boolean estado = Estados.servicoDisponivel(usuario.getEstado());
+		Boolean estado = Estados.servicoDisponivel(usuario.getEstado().toString());
 		
 		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
 		
-		if(estadoDoServico.equals(INDISPONIVEL)) {
-			return null;
-		}else {
+		if(estadoDoServico.equals(DISPONIVEL)) {
 			return usuarioRepository.save(usuario);
+		}else {
+			return null;
 		}
 	}
 }
