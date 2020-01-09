@@ -12,12 +12,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+
 @Getter
 @Setter
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "usuario")
 public class Usuario extends Login implements Serializable{
 
 	private static final long serialVersionUID = 1L;
