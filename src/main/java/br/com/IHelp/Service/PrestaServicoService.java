@@ -36,9 +36,14 @@ public class PrestaServicoService {
 		Boolean estado = Estados.servicoDisponivel(prestaServico.getEstado().toString());
 		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
 		Boolean verificaEmail = verificaSeExisteEmail(prestaServico);
+		Boolean verificaCnpj = verificaSeExisteCnpj(prestaServico);
 		
-		if(estadoDoServico.equals(DISPONIVEL) && verificaEmail.equals(false)) {
-			return prestaServicoRepository.save(prestaServico);
+		if(estadoDoServico.equals(DISPONIVEL)) {
+			if(verificaCnpj.equals(false)&& verificaEmail.equals(false)) {
+				return prestaServicoRepository.save(prestaServico);
+			}else{
+				return null;
+			}
 		}else {
 			return null;
 		}
@@ -65,7 +70,7 @@ public class PrestaServicoService {
 	}
 	
 	public Boolean verificaSeExisteCnpj(PrestaServico prestaServico) {
-		String email = listaEmail().stream()
+		String email = listaCnpj().stream()
 										 .filter(p -> p.toLowerCase().equals(prestaServico.getCnpj().toLowerCase()))
 										 .collect(Collectors.joining(". "));
 		
