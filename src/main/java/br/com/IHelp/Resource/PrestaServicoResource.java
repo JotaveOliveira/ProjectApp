@@ -29,7 +29,6 @@ public class PrestaServicoResource {
 	@PostMapping(value = "/cadastraPrestaServico")
 	public ResponseEntity<PrestaServico> cadastraUsuario(@RequestBody PrestaServico prestaServico){
 		prestaServico = prestaServicoService.inserirUsuario(prestaServico);
-		
 		return ResponseEntity.ok().body(prestaServico);
 		
 	}

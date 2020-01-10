@@ -29,8 +29,8 @@ public class PrestaServico implements Serializable{
 	@Column(name = "id_presta_servico")
 	private Long id;
 	
-	@Column(name = "cpf_cnpj_presta_servico")
-	private String cpf_cnpj;
+	@Column(name = "cnpj_presta_servico")
+	private String cnpj;
 	
 	@Column(name = "nome_presta_servico")
 	private String nome;
