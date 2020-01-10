@@ -43,4 +43,7 @@ public class PrestaServico implements Serializable{
 	
 	@Column(name = "data_nascimento_presta_servico")
 	private String dataNascimento;
+	
+	@Column(name = "telefone_presta_servico")
+	private String telefone;
 }
