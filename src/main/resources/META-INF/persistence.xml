@@ -12,6 +12,7 @@
 
    <!-- entidade mapeada -->
    <class>br.com.IHelp.Entities.PrestaServico</class>
+   <class>br.com.IHelp.Entities.Usuario</class>
 
    <properties>
     <!-- dados da conexao -->
