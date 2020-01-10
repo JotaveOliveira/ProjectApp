@@ -1,6 +1,7 @@
 package br.com.IHelp.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,10 +34,10 @@ public class PrestaServicoService {
 	public PrestaServico inserirUsuario(PrestaServico prestaServico) {
 		
 		Boolean estado = Estados.servicoDisponivel(prestaServico.getEstado().toString());
-		
 		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
+		Boolean verificaEmail = verificaSeExisteEmail(prestaServico);
 		
-		if(estadoDoServico.equals(DISPONIVEL)) {
+		if(estadoDoServico.equals(DISPONIVEL) && verificaEmail.equals(false)) {
 			return prestaServicoRepository.save(prestaServico);
 		}else {
 			return null;
@@ -52,4 +53,16 @@ public class PrestaServicoService {
 	    TypedQuery<PrestaServico> query = entityManager.createQuery("select cnpj_presta_servico from presta_servico", PrestaServico.class);
 	    return query.getResultList();
 	  }
+	
+	public Boolean verificaSeExisteEmail(PrestaServico prestaServico) {
+		String email = listaEmail().stream()
+										 .filter(p -> p.getEmail().toString().trim().toLowerCase().equals(prestaServico.getEmail().toString().trim().toLowerCase()))
+										 .map(p -> p.getEmail().toString())
+										 .collect(Collectors.joining("* "));
+		
+		Boolean exist = email.isEmpty() ? false : true;
+		
+		return exist;
+	}
 }
+
